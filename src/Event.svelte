@@ -10,21 +10,25 @@
 
 </script>
 
-<article class="tile is-child box">
-  <p class="title">{event.title}</p>
-  <p class="subtitle">{event.genre}</p>
+<article class="column is-child notification is-centered">
   {#if event.image}
   <figure class="image is-4by3">
     <img src={event.image} alt={event.image}/>
   </figure>
   {/if}
+
+  <p class="title">{event.title}</p>
+  <p class="subtitle">{event.genre}</p>
   <div class="containt">
     {#each event.description.split('\n') as t}
       <p>{t}</p>
     {/each}
-    <p>-- info --</p>
-    <p>OPEN :{toStr(event.open)}</p>
-    <p>CLOSE: {toStr(event.close)}</p><br>
-    <a target="_blank" href={event.url}>{event.url}</a>
+    <br>
+    <div class="has-text-centered">
+      -- info --
+      <p>OPEN :{toStr(event.open)}</p>
+      <p>CLOSE: {toStr(event.close)}</p><br>
+      <a target="_blank" href={event.url}>{event.url}</a>
+    </div>
   </div>
 </article>

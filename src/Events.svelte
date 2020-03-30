@@ -4,7 +4,7 @@
   import Event from "./Event.svelte";
   let events;
   let loading = false;
-  let inverted = "Week";
+  let inverted = "week";
 
 function changeArrStats(arr, target){
   Object.keys(obj).forEach( function(key) {
@@ -20,10 +20,12 @@ function changeArrStats(arr, target){
         events = data;
         loading = false;
         if(start===0&&end===1){
-          inverted = "Today";
+          inverted = "today";
         } else if(start===0&&end===7){
-          inverted = "Week";
-        }
+          inverted = "week";
+       } else if(start===-7&&end===0){
+          inverted = "last";
+       }
       });
   }
 
@@ -32,8 +34,25 @@ function changeArrStats(arr, target){
   });
 
 </script>
-<div class="buttons">
-  {#if inverted == "Today"}
+
+
+
+<div class="buttons are-large is-centered has-addons">
+  {#if inverted == "last"}
+    <Button type="is-light"
+            inverted
+            {loading}
+            on:click={() => loadEvents(-7,0)}>
+            Last week
+    </Button>
+  {:else}
+    <Button type="is-light"
+            {loading}
+            on:click={() => loadEvents(-7,0)}>
+            Last week
+    </Button>
+    {/if}
+  {#if inverted == "today"}
     <Button type="is-light"
             inverted
             {loading}
@@ -47,18 +66,18 @@ function changeArrStats(arr, target){
             Today
     </Button>
   {/if}
-  {#if inverted == "Week"}
+  {#if inverted == "week"}
     <Button type="is-light"
             inverted
             {loading}
             on:click={() => loadEvents(0,7)}>
-            Week
+            This week
     </Button>
   {:else}
     <Button type="is-light"
             {loading}
             on:click={() => loadEvents(0,7)}>
-            Week
+            This week
     </Button>
   {/if}
 </div>
