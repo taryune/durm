@@ -12,12 +12,16 @@
   });
 </script>
 
+<div class="columns is-ancestor is-multiline">
 {#if events}
   {#each events as event}
-    <ul>
-      <li><Event {event}/></li>
-    </ul>
+      <div class="tile is-parent is-3">
+          <Event {event}/>
+      </div>
   {/each}
 {:else}
-    <p class="loading">loading</p>
+    <div class="tile is-parent">loading</div>
 {/if}
+</div>
+
+
