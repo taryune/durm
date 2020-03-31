@@ -9,11 +9,10 @@
   }
 
 </script>
-
 <article class="column is-child notification is-centered">
   {#if event.image}
   <figure class="image is-4by3">
-    <img src={event.image} alt={event.image}/>
+    <iframe class="has-ratio" width="640" height="360" src={event.image} frameborder="0"></iframe>
   </figure>
   {/if}
 
