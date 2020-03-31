@@ -1,6 +1,7 @@
 <script>
   export let event;
   let text = event.description.split('\n');
+
   function toStr(date){
     var d = new Date(date);
     var week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -9,25 +10,29 @@
   }
 
 </script>
-<article class="column is-child notification is-centered">
-  {#if event.image}
-  <figure class="image is-4by3">
-    <iframe class="has-ratio" width="640" height="360" src={event.image} frameborder="0"></iframe>
-  </figure>
-  {/if}
 
-  <p class="title">{event.title}</p>
-  <p class="subtitle">{event.genre}</p>
-  <div class="containt">
-    {#each event.description.split('\n') as t}
-      <p>{t}</p>
-    {/each}
-    <br>
-    <div class="has-text-centered">
-      -- info --
-      <p>OPEN :{toStr(event.open)}</p>
-      <p>CLOSE: {toStr(event.close)}</p><br>
-      <a target="_blank" href={event.url}>{event.url}</a>
-    </div>
+<div class="box">
+  <div class="panel-block">
+    <a class="subtitle" target="_blank" href={event.url}>{event.title}</a>
   </div>
-</article>
+  <br>
+  {#if event.image}
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <iframe class="has-ratio" width="640" height="360" src={event.image} title="image" frameborder="0"></iframe>
+    </figure>
+  </div>
+  {/if}
+  <br>
+  <div class="pannel-block">
+  {#each event.description.split('\n') as t}
+    <p>{t}</p>
+  {/each}
+  <br>
+  </div>
+  <div class="panel-block"></div>
+    <p class="">Genre: {event.genre}</p>
+    <p>OPEN :{toStr(event.open)}</p>
+    <p>CLOSE: {toStr(event.close)}</p>
+    <a target="_blank" href={event.url}>{event.url}</a>
+</div>
